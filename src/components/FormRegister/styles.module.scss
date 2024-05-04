@@ -1,0 +1,42 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 25.5px;
+  background-color: var(--Grey-3);
+  border-radius: 0.25rem;
+  margin-bottom: 4rem;
+  height: 891.19px;
+
+  header {
+    margin: 2rem 0rem 1.24rem 0rem;
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+
+    p {
+      color: var(--Grey-1);
+    }
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  button {
+    padding: 1rem;
+    margin: 0.5rem 0rem 1.7619rem 0rem;
+    border-radius: 0.25rem;
+    border: none;
+    outline: none;
+    color: var(--Grey-0);
+    background-color: var(--Color-primary);
+    font-weight: 500;
+    font-size: 1rem;
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: #59323f;
+    }
+  }
+}

@@ -12,14 +12,18 @@
   --Grey-0: #f8f9fa;
 
   //Feedback Palette
-  --Sucess: #3fe864;
-  --Negative: #e83f5b;
+  --Color-of-Sucess: #3fe864;
+  --Color-of-Error: #e83f5b;
+}
+
+body {
+  background-color: var(--Grey-4);
+  color: var(--Grey-0);
 }
 
 .conteiner {
   width: 100%;
   margin: 0 auto;
-  padding: 1.5rem;
-  max-width: 1390px;
-  border: solid red;
+  padding-inline: 1.5rem;
+  max-width: 425px;
 }

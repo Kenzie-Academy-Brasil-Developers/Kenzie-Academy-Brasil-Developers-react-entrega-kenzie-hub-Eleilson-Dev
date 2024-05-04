@@ -1,0 +1,30 @@
+.registerBox {
+  header {
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.4813rem;
+
+    h1 {
+      color: var(--Color-primary);
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--Grey-3);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 1rem 1.1rem;
+      border-radius: 0.25rem;
+
+      &:hover {
+        background-color: var(--Grey-2);
+      }
+    }
+  }
+}

@@ -1,11 +1,16 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 export const AccountContext = createContext();
 
 export const AccountProvider = ({ children }) => {
-  const teste = 'teste';
+  const [formData, setFormData] = useState(null);
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
   return (
-    <AccountContext.Provider value={{ teste }}>
+    <AccountContext.Provider value={{ formData, setFormData }}>
       {children}
     </AccountContext.Provider>
   );
