@@ -27,8 +27,6 @@ export const RegisterProvider = ({ children }) => {
     console.log('cadastro realizado');
   };
 
-  console.log(formData);
-
   return (
     <RegisterContext.Provider value={{ formData, setFormData, userRegister }}>
       {children}

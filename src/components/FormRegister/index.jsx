@@ -18,10 +18,6 @@ export const FormRegister = () => {
 
   const addRegister = (formData) => {
     userRegister(formData);
-    reset();
-  };
-
-  const navTo = () => {
     navigate('/dashboard');
   };
 
@@ -40,7 +36,7 @@ export const FormRegister = () => {
           />
         )}
       />
-      <Button type="submit" bgColor="btn1" title="Cadastrar" navTo={navTo} />
+      <Button type="submit" bgColor="btn1" title="Cadastrar" />
     </form>
   );
 };
