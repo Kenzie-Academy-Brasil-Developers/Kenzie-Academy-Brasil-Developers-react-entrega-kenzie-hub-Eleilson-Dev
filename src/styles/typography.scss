@@ -6,7 +6,7 @@ body {
 
 .Title1 {
   font-weight: bold;
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 1.091rem + 0.038vw, 1.125rem);
 }
 
 .Title2 {
@@ -16,7 +16,7 @@ body {
 
 .Headline {
   font-weight: normal;
-  font-size: 0.75rem;
+  font-size: clamp(0.65rem, 0.613rem + 0.152vw, 0.75rem);
 }
 
 .HeadlineBold {

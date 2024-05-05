@@ -9,7 +9,7 @@
     h1 {
       color: var(--Color-primary);
       font-weight: bold;
-      font-size: 1.5rem;
+      font-size: clamp(1.2rem, 1.089rem + 0.457vw, 1.5rem);
     }
 
     a {
@@ -17,9 +17,10 @@
       align-items: center;
       justify-content: center;
       background-color: var(--Grey-3);
-      font-size: 0.75rem;
+      font-size: clamp(0.6rem, 0.544rem + 0.229vw, 0.75rem);
       font-weight: 600;
-      padding: 1rem 1.1rem;
+      padding: clamp(0.6rem, 0.451rem + 0.61vw, 1rem)
+        clamp(0.8rem, 0.689rem + 0.457vw, 1.1rem);
       border-radius: 0.25rem;
 
       &:hover {

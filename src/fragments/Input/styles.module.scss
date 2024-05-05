@@ -1,19 +1,19 @@
 .inputBox {
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.9rem, 0.863rem + 0.152vw, 1rem);
 
   label {
     margin-top: 0.3rem;
-    margin-bottom: 14px;
+    margin-bottom: 0.875rem;
     text-transform: capitalize;
-    font-size: 0.8rem;
+    font-size: clamp(0.75rem, 0.526rem + 0.305vw, 0.8rem);
   }
 
   input {
-    padding: 0.99rem;
+    padding: clamp(0.85rem, 0.798rem + 0.213vw, 0.99rem);
     background-color: var(--Grey-2);
     border: none;
     outline: none;
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 0.826rem + 0.305vw, 1.1rem);
     color: var(--Grey-0);
     border-radius: 0.25rem;
   }
