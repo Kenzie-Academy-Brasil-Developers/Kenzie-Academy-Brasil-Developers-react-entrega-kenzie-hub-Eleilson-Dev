@@ -1,21 +1,28 @@
 import styles from './styles.module.scss';
 
 import { useRegisterContext } from '../../hooks/useRegisterContext';
+import { useCustomForm } from '../../hooks/useCustomForm';
+import { useNavigate } from 'react-router-dom';
+
 import { Controller } from 'react-hook-form';
 import { FormInputs } from './FormInputs';
 import { HeaderRegister } from './HeaderRegister';
 import { Button } from '../../fragments/Button';
 import { Select } from '../../fragments/Select';
-import { useCustomForm } from '../../hooks/useCustomForm';
+import moduleOptions from '../../constants/moduleOptions';
 
 export const FormRegister = () => {
-  const { setFormData, userRegister } = useRegisterContext();
+  const { userRegister } = useRegisterContext();
   const { control, register, handleSubmit, reset, errors } = useCustomForm();
+  const navigate = useNavigate();
 
   const addRegister = (formData) => {
-    setFormData(formData);
     userRegister(formData);
     reset();
+  };
+
+  const navTo = () => {
+    navigate('/dashboard');
   };
 
   return (
@@ -23,17 +30,17 @@ export const FormRegister = () => {
       <HeaderRegister />
       <FormInputs register={register} />
       <Controller
-        name="module"
+        name="course_module"
         control={control}
         render={({ field }) => (
           <Select
             {...field}
-            options={['Primeiro Módulo', 'Segundo Módulo', 'Terceiro Módulo']}
-            defaultValue="Primeiro Módulo"
+            options={moduleOptions}
+            defaultValue={moduleOptions[0].course_module}
           />
         )}
       />
-      <Button type="submit" bgColor="btn1" title="Cadastrar" />
+      <Button type="submit" bgColor="btn1" title="Cadastrar" navTo={navTo} />
     </form>
   );
 };

@@ -9,7 +9,7 @@ export const useCustomForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      module: 'Primeiro Módulo',
+      course_module: 'Primeiro Módulo',
     },
   });
 

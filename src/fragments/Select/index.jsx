@@ -1,22 +1,22 @@
+import { forwardRef, useEffect } from 'react';
 import styles from './styles.module.scss';
 
+import { useSelect } from '../../hooks/useSelect';
 import { AngleDownIcon } from '../AngleDownIcon';
-import { forwardRef, useEffect, useState } from 'react';
+import { DropdownOptions } from './DropdownOptions';
 
 export const Select = forwardRef(
   ({ onChange, value, defaultValue, options, ...props }, ref) => {
-    const [showSelect, setShowSelect] = useState(false);
-    const [selectedValue, setSelectedValue] = useState(value || defaultValue);
-
-    const toggleDropdown = () => setShowSelect(!showSelect);
-
-    const handleSelect = (option) => {
-      onChange(option);
-      setShowSelect(false);
-    };
+    const {
+      showDropdown,
+      currentValue,
+      toggleDropdown,
+      handleSelect,
+      setCurrentValue,
+    } = useSelect(defaultValue, onChange);
 
     useEffect(() => {
-      if (selectedValue) setSelectedValue(value);
+      setCurrentValue(value);
     }, [value]);
 
     return (
@@ -24,18 +24,14 @@ export const Select = forwardRef(
         <label htmlFor={props.id || 'select'}>Selecionar Módulo</label>
 
         <div ref={ref} onClick={toggleDropdown} {...props}>
-          <h2>{value}</h2>
-          <span>
-            <AngleDownIcon />
-          </span>
-          {showSelect && (
-            <div className={styles.options}>
-              {options.map((option, index) => (
-                <div key={index} onClick={() => handleSelect(option)}>
-                  {option}
-                </div>
-              ))}
-            </div>
+          <h2>{currentValue}</h2>
+          <AngleDownIcon />
+          {showDropdown && (
+            <DropdownOptions
+              options={options}
+              onSelect={handleSelect}
+              toggleDropdown={toggleDropdown}
+            />
           )}
         </div>
       </div>
