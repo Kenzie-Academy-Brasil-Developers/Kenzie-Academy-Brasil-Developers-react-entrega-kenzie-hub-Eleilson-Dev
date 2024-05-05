@@ -1,4 +1,4 @@
-export const FormHeader = () => {
+export const HeaderRegister = () => {
   return (
     <header>
       <h2 className="Title1">Crie sua conta</h2>

@@ -1,0 +1,16 @@
+.btn {
+  padding: 1rem;
+  margin: 0.5rem 0rem 1.7619rem 0rem;
+  border-radius: 0.25rem;
+  border: none;
+  outline: none;
+  color: var(--Grey-0);
+  font-weight: 500;
+  font-size: clamp(0.9rem, 0.863rem + 0.152vw, 1rem);
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--Color-primary-Negative);
+  }
+}

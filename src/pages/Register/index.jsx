@@ -1,16 +1,18 @@
 import styles from './styles.module.scss';
 
-import { Link } from 'react-router-dom';
 import { FormRegister } from '../../components/FormRegister';
+import { HeaderRegister } from './HeaderRegister';
+import { RegisterProvider } from '../../providers/RegisterContext';
 
 export const Register = () => {
   return (
     <div className={`${styles.registerBox} conteiner`}>
-      <header>
-        <h1>Kenzie Hub</h1>
-        <Link to="/">Voltar</Link>
-      </header>
-      <FormRegister />
+      <HeaderRegister />
+      <main>
+        <RegisterProvider>
+          <FormRegister />
+        </RegisterProvider>
+      </main>
     </div>
   );
 };

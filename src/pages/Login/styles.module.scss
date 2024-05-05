@@ -1,3 +1,15 @@
 .loginBox {
-  background-color: var(--Sucess);
+  header {
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.2313rem;
+
+    h1 {
+      color: var(--Color-primary);
+      font-weight: bold;
+      font-size: clamp(1.2rem, 1.089rem + 0.457vw, 1.5rem);
+    }
+  }
 }

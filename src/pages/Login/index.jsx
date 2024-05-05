@@ -1,5 +1,16 @@
+import { FormLogin } from '../../components/FormLogin';
+import { LoginProvider } from '../../providers/LoginContext';
 import styles from './styles.module.scss';
 
 export const Login = () => {
-  return <h1 className={`${styles.loginBox}`}>Login page</h1>;
+  return (
+    <div className={`${styles.loginBox} conteiner`}>
+      <header>
+        <h1>Kenzie Hub</h1>
+      </header>
+      <LoginProvider>
+        <FormLogin />
+      </LoginProvider>
+    </div>
+  );
 };
