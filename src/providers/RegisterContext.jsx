@@ -3,14 +3,15 @@ import { createContext, useEffect, useState } from 'react';
 export const RegisterContext = createContext();
 
 export const RegisterProvider = ({ children }) => {
-  const [formData, setFormData] = useState(null);
+  const [formData, setFormData] = useState({});
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  const userRegister = (newUser) => {
+    console.log(newUser);
+    console.log('cadastro realizado');
+  };
 
   return (
-    <RegisterContext.Provider value={{ formData, setFormData }}>
+    <RegisterContext.Provider value={{ formData, setFormData, userRegister }}>
       {children}
     </RegisterContext.Provider>
   );

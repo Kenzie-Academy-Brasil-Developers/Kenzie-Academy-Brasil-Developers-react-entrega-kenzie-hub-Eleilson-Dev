@@ -1,0 +1,32 @@
+.selectBox {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: clamp(0.9rem, 0.863rem + 0.152vw, 1rem);
+
+  label {
+    margin-top: 0.3rem;
+    margin-bottom: 0.875rem;
+    text-transform: capitalize;
+    font-size: clamp(0.75rem, 0.526rem + 0.305vw, 0.8rem);
+  }
+
+  div {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: clamp(0.85rem, 0.798rem + 0.213vw, 0.99rem);
+    background-color: var(--Grey-2);
+    border-radius: 0.25rem;
+    cursor: pointer;
+
+    .options {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      left: 0;
+      top: 3rem;
+      width: 100%;
+      border: solid red;
+    }
+  }
+}

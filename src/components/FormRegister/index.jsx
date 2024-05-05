@@ -1,62 +1,39 @@
 import styles from './styles.module.scss';
 
 import { useRegisterContext } from '../../hooks/useRegisterContext';
-import { useForm } from 'react-hook-form';
-import { Input } from '../../fragments/Input';
+import { Controller } from 'react-hook-form';
+import { FormInputs } from './FormInputs';
 import { HeaderRegister } from './HeaderRegister';
 import { Button } from '../../fragments/Button';
+import { Select } from '../../fragments/Select';
+import { useCustomForm } from '../../hooks/useCustomForm';
 
 export const FormRegister = () => {
-  const { setFormData } = useRegisterContext();
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+  const { setFormData, userRegister } = useRegisterContext();
+  const { control, register, handleSubmit, reset, errors } = useCustomForm();
 
   const addRegister = (formData) => {
     setFormData(formData);
+    userRegister(formData);
     reset();
   };
 
   return (
     <form onSubmit={handleSubmit(addRegister)} className={styles.form}>
       <HeaderRegister />
-      <Input
-        id="nome"
-        placeholder="Digite aqui seu nome"
-        type="text"
-        {...register('name')}
+      <FormInputs register={register} />
+      <Controller
+        name="module"
+        control={control}
+        render={({ field }) => (
+          <Select
+            {...field}
+            options={['Primeiro Módulo', 'Segundo Módulo', 'Terceiro Módulo']}
+            defaultValue="Primeiro Módulo"
+          />
+        )}
       />
-      <Input
-        id="email"
-        type="email"
-        placeholder="Digite aqui seu email"
-        {...register('email')}
-      />
-      <Input
-        id="senha"
-        type="text"
-        placeholder="Digite aqui sua senha"
-        {...register('password')}
-      />
-      <Input
-        id="confirmar senha"
-        type="text"
-        placeholder="Digite novamente sua senha"
-        {...register('confirmPassword')}
-      />
-      <Input id="bio" placeholder="Fale sobre você" {...register('bio')} />
-      <Input
-        id="contato"
-        type={'tel'}
-        placeholder="Opção de contato"
-        {...register('contact')}
-      />
-      <Input id="Selecionar modulo" placeholder="Primeiro Modulo" />
-      <Button type="submit" disabled={false} bgColor="btn1" title="Cadastrar" />
+      <Button type="submit" bgColor="btn1" title="Cadastrar" />
     </form>
   );
 };

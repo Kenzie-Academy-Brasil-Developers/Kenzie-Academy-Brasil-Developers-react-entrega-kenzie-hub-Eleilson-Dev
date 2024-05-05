@@ -28,6 +28,13 @@ body {
   max-width: 425px;
 }
 
+.dashboardConteiner {
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: 1.5rem;
+  max-width: 775px;
+}
+
 .btn1 {
   background-color: var(--Color-primary);
 }

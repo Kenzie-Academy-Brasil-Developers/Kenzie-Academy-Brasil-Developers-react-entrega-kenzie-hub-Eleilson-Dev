@@ -1,0 +1,54 @@
+.dashBox {
+  header {
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.4813rem;
+
+    h1 {
+      color: var(--Color-primary);
+      font-weight: bold;
+      font-size: clamp(1.2rem, 1.089rem + 0.457vw, 1.5rem);
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--Grey-3);
+      font-size: clamp(0.6rem, 0.544rem + 0.229vw, 0.75rem);
+      font-weight: 600;
+      padding: clamp(0.6rem, 0.526rem + 0.305vw, 0.8rem)
+        clamp(1rem, 0.926rem + 0.305vw, 1.2rem);
+      border-radius: 0.25rem;
+
+      &:hover {
+        background-color: var(--Grey-2);
+      }
+    }
+  }
+}
+
+.userSection {
+  border-top: solid 1px var(--Grey-3);
+  border-bottom: solid 1px var(--Grey-3);
+  padding: 3rem 0rem;
+  margin-bottom: 2.3125rem;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  p {
+    color: var(--Grey-1);
+  }
+}
+
+.detailsSection {
+  h1 {
+    margin-bottom: 1.4375rem;
+  }
+}
