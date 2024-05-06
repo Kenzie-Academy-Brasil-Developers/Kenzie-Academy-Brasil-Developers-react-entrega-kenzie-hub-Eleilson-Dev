@@ -30,7 +30,7 @@ export const FormInputs = ({ register }) => {
       <Input id="bio" placeholder="Fale sobre você" {...register('bio')} />
       <Input
         id="contato"
-        type={'tel'}
+        type="text"
         placeholder="Opção de contato"
         {...register('contact')}
       />
