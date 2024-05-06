@@ -8,14 +8,12 @@ export const RegisterProvider = ({ children }) => {
   const userRegister = async (formRegisterData) => {
     try {
       const { data } = await api.post('/users', formRegisterData);
-      console.log(data);
     } catch (error) {
       console.error('Registration error:', error.response || error);
     }
   };
 
   const userCreate = (newUser) => {
-    console.log(newUser);
     const data = moduleOptions.find(
       (option) => option.course_module === newUser.course_module
     );
