@@ -1,9 +1,12 @@
 import { RoutesMain } from './components/routes';
+import { LoginProvider } from './providers/LoginContext';
 
 const App = () => {
   return (
     <>
-      <RoutesMain />
+      <LoginProvider>
+        <RoutesMain />
+      </LoginProvider>
     </>
   );
 };

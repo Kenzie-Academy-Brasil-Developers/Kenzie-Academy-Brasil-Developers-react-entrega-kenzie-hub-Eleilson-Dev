@@ -1,5 +1,5 @@
 import { FormLogin } from '../../components/FormLogin';
-import { LoginProvider } from '../../providers/LoginContext';
+
 import styles from './styles.module.scss';
 
 export const Login = () => {
@@ -8,9 +8,8 @@ export const Login = () => {
       <header>
         <h1>Kenzie Hub</h1>
       </header>
-      <LoginProvider>
-        <FormLogin />
-      </LoginProvider>
+
+      <FormLogin />
     </div>
   );
 };

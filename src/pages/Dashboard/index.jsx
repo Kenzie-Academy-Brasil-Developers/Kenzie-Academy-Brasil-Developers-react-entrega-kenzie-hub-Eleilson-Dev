@@ -1,9 +1,10 @@
 import styles from './styles.module.scss';
 import { HeaderDashBoard } from './HeaderDashBoard';
-import { useRegisterContext } from '../../hooks/useRegisterContext';
+
+import { useLoginContext } from '../../hooks/useLoginContext';
 
 export const Dashboard = () => {
-  const { formData } = useRegisterContext();
+  const { user } = useLoginContext();
 
   return (
     <div className={`${styles.dashBox}`}>
@@ -11,8 +12,8 @@ export const Dashboard = () => {
       <main>
         <section className={styles.userSection}>
           <div className="dashboardConteiner">
-            <h1 className="Title1">Olá, {formData.name}</h1>
-            <p className="Headline">{formData.course_module}</p>
+            <h1 className="Title1">Olá, {user?.name}</h1>
+            <p className="Headline">{user?.course_module}</p>
           </div>
         </section>
         <section className={`${styles.detailsSection} dashboardConteiner`}>

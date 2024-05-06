@@ -8,13 +8,7 @@ export const Input = forwardRef(({ id, icon, placeholder, ...rest }, ref) => {
     <div className={styles.inputContent}>
       <label htmlFor={id}>{id}</label>
       <div className={styles.inputBox}>
-        <input
-          ref={ref}
-          id={id}
-          autoComplete="off"
-          placeholder={placeholder}
-          {...rest}
-        />
+        <input ref={ref} id={id} placeholder={placeholder} {...rest} />
         {icon === 'visible' ? <IconEye /> : null}
       </div>
     </div>

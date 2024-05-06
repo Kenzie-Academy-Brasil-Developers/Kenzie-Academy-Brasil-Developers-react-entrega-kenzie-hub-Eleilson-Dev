@@ -5,11 +5,15 @@ const moduleOptions = [
   },
   {
     course_module: 'Segundo Módulo',
-    description: 'Descrição do Segundo Módulo',
+    description: ' (Frontend Avançado)',
   },
   {
     course_module: 'Terceiro Módulo',
-    description: 'Descrição do Terceiro Módulo',
+    description: '(Introdução ao Backend)',
+  },
+  {
+    course_module: 'Quarto Módulo',
+    description: ' (Backend Avançado)',
   },
 ];
 

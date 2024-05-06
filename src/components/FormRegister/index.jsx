@@ -12,12 +12,12 @@ import { Select } from '../../fragments/Select';
 import moduleOptions from '../../constants/moduleOptions';
 
 export const FormRegister = () => {
-  const { userRegister } = useRegisterContext();
+  const { userCreate } = useRegisterContext();
   const { control, register, handleSubmit, reset, errors } = useCustomForm();
   const navigate = useNavigate();
 
   const addRegister = (formData) => {
-    userRegister(formData);
+    userCreate(formData);
     navigate('/dashboard');
   };
 

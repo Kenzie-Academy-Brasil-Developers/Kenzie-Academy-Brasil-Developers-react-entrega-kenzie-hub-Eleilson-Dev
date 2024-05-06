@@ -1,34 +1,42 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext } from 'react';
+import { api } from '../services/api';
 import moduleOptions from '../constants/moduleOptions';
 
 export const RegisterContext = createContext();
 
 export const RegisterProvider = ({ children }) => {
-  const [formData, setFormData] = useState({ name: '', course_module: '' });
+  const userRegister = async (formRegisterData) => {
+    try {
+      const { data } = await api.post('/users', formRegisterData);
+      console.log(data);
+    } catch (error) {
+      console.error('Registration error:', error.response || error);
+    }
+  };
 
-  const userRegister = (newUser) => {
-    const data = moduleOptions.find((option) => {
-      if (option.course_module === newUser.course_module) {
-        return option;
-      }
-    });
+  const userCreate = (newUser) => {
+    console.log(newUser);
+    const data = moduleOptions.find(
+      (option) => option.course_module === newUser.course_module
+    );
 
     if (data) {
       const { course_module, description } = data;
 
-      setFormData(() => {
-        return {
-          ...newUser,
-          course_module: `${course_module} ${description}`,
-        };
-      });
-    }
+      const updatedFormData = {
+        ...newUser,
+        course_module: `${course_module} ${description}`,
+      };
 
-    console.log('cadastro realizado');
+      userRegister(updatedFormData);
+      console.log('cadastro realizado');
+    } else {
+      console.log('Module not found for:', newUser.course_module);
+    }
   };
 
   return (
-    <RegisterContext.Provider value={{ formData, setFormData, userRegister }}>
+    <RegisterContext.Provider value={{ userCreate }}>
       {children}
     </RegisterContext.Provider>
   );

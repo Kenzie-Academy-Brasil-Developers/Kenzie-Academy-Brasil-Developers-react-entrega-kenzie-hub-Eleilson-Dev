@@ -8,7 +8,7 @@ import { Input } from '../../fragments/Input';
 import { Button } from '../../fragments/Button';
 
 export const FormLogin = () => {
-  const { isVisible } = useLoginContext();
+  const { isVisible, userLogin } = useLoginContext();
   const {
     register,
     handleSubmit,
@@ -23,7 +23,7 @@ export const FormLogin = () => {
   };
 
   const loginSubmit = (formData) => {
-    console.log(formData);
+    userLogin(formData);
     reset();
   };
 
