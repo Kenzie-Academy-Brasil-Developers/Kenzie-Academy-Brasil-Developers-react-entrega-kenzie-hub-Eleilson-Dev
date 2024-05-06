@@ -3,14 +3,16 @@ import { Route, Routes } from 'react-router-dom';
 import { Login } from '../../pages/Login';
 import { Register } from '../../pages/Register';
 import { Dashboard } from '../../pages/Dashboard';
-import { ProtectedRoutes } from '../ProtectedRoutes';
+import { DashboarProtected, LoginProtected } from '../ProtectedRoutes';
 
 export const RoutesMain = () => {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<LoginProtected />}>
+        <Route index element={<Login />} />
+      </Route>
       <Route path="/register" element={<Register />} />
-      <Route path="/dashboard" element={<ProtectedRoutes />}>
+      <Route path="/dashboard" element={<DashboarProtected />}>
         <Route index element={<Dashboard />} />
       </Route>
     </Routes>
