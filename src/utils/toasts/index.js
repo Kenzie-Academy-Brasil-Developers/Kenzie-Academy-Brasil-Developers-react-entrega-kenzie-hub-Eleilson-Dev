@@ -1,10 +1,8 @@
-// successToast.jsx
 import { toast } from 'react-toastify';
-import './toastStyles.scss';
+import './toasts.styles.scss';
 
 export const successToast = () => {
   return toast.success('Conta criada com sucesso!', {
-    icon: 'iconcolor',
     className: 'toast-custom-success',
     progressClassName: 'toast-custom-progress-bar',
     autoClose: 5000,
