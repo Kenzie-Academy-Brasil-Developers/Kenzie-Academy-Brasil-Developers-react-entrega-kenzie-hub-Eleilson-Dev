@@ -1,15 +1,18 @@
 import { createContext } from 'react';
 import { api } from '../services/api';
 import moduleOptions from '../constants/moduleOptions';
+import { successToast, errorToast } from '../utils/toasts';
 
 export const RegisterContext = createContext();
 
 export const RegisterProvider = ({ children }) => {
   const userRegister = async (formRegisterData) => {
     try {
-      const { data } = await api.post('/users', formRegisterData);
+      await api.post('/users', formRegisterData);
+      successToast();
     } catch (error) {
       console.error('Registration error:', error.response || error);
+      errorToast();
     }
   };
 
