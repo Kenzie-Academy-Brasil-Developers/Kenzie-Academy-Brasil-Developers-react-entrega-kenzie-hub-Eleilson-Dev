@@ -51,8 +51,7 @@
 
 .error {
   position: absolute;
-  font-size: 12px;
+  font-size: clamp(0.55rem, 0.493rem + 0.286vw, 0.75rem);
   bottom: -16px;
-  padding-inline: 1rem;
   color: var(--Color-of-Error);
 }
