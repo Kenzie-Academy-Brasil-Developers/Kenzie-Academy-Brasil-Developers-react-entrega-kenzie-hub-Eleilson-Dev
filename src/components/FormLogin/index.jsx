@@ -32,12 +32,14 @@ export const FormLogin = () => {
       <h2 className="Title1">Login</h2>
       <Input
         id="email"
+        label="email"
         type="email"
         placeholder="Digite seu email aqui"
         {...register('email')}
       />
       <Input
         id="senha"
+        label="senha"
         type={isVisible ? 'text' : 'password'}
         placeholder="Digite sua senha aqui"
         icon="visible"

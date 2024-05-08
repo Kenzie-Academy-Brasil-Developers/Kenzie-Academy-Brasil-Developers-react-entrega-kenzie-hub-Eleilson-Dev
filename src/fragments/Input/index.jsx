@@ -3,14 +3,21 @@ import styles from './styles.module.scss';
 import { forwardRef } from 'react';
 import { IconEye } from './IconEye';
 
-export const Input = forwardRef(({ id, icon, placeholder, ...rest }, ref) => {
+export const Input = forwardRef(({ id, label, icon, errors, ...rest }, ref) => {
+  const errorMessage = errors && errors[id] ? errors[id].message : null;
+
   return (
     <div className={styles.inputContent}>
-      <label htmlFor={id}>{id}</label>
-      <div className={styles.inputBox}>
-        <input ref={ref} id={id} placeholder={placeholder} {...rest} />
+      <label htmlFor={id}>{label}</label>
+
+      <div
+        className={`${styles.inputBox} ${errorMessage ? 'border2' : 'border1'}`}
+      >
+        <input ref={ref} id={id} {...rest} />
         {icon === 'visible' ? <IconEye /> : null}
       </div>
+
+      {errorMessage && <p className={styles.error}>{errorMessage}</p>}
     </div>
   );
 });

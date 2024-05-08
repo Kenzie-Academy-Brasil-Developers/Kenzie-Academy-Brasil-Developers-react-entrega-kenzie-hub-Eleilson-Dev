@@ -23,7 +23,12 @@ export const Select = forwardRef(
       <div className={styles.selectBox}>
         <label htmlFor={props.id || 'select'}>Selecionar Módulo</label>
 
-        <div ref={ref} onClick={toggleDropdown} {...props}>
+        <div
+          className={styles.optionsContent}
+          ref={ref}
+          onClick={toggleDropdown}
+          {...props}
+        >
           <h2>{currentValue}</h2>
           <AngleDownIcon />
           {showDropdown && (

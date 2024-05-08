@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import { api } from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import { errorToast } from '../utils/toasts';
 
 export const LoginContext = createContext();
 
@@ -42,13 +43,17 @@ export const LoginProvider = ({ children }) => {
       setUser(data.user);
       navigate('/dashboard');
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      errorToast('E-mail ou senha invalidos');
     }
   };
 
   const userLogin = (formLogin) => {
     userLoged(formLogin);
   };
+
+  const userIsLoged =
+    !localStorage.getItem('@TOKEN') && !localStorage.getItem('@USERID');
 
   const userLogout = () => {
     localStorage.removeItem('@TOKEN');
@@ -59,7 +64,14 @@ export const LoginProvider = ({ children }) => {
 
   return (
     <LoginContext.Provider
-      value={{ isVisible, setIsVisible, user, userLogin, userLogout }}
+      value={{
+        isVisible,
+        setIsVisible,
+        user,
+        userLogin,
+        userLogout,
+        userIsLoged,
+      }}
     >
       {children}
     </LoginContext.Provider>

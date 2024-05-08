@@ -12,19 +12,24 @@ import { Select } from '../../fragments/Select';
 import moduleOptions from '../../constants/moduleOptions';
 
 export const FormRegister = () => {
-  const { userCreate } = useRegisterContext();
-  const { control, register, handleSubmit, reset, errors } = useCustomForm();
+  const { userCreate, handleFormChange, isDisabled } = useRegisterContext();
+  const { control, register, handleSubmit, formState } = useCustomForm();
+
   const navigate = useNavigate();
 
   const addRegister = (formData) => {
     userCreate(formData);
-    navigate('/dashboard');
+    navigate('/');
   };
 
   return (
-    <form onSubmit={handleSubmit(addRegister)} className={styles.form}>
+    <form
+      onSubmit={handleSubmit(addRegister)}
+      className={styles.form}
+      onChange={handleFormChange}
+    >
       <HeaderRegister />
-      <FormInputs register={register} />
+      <FormInputs register={register} errors={formState} />
       <Controller
         name="course_module"
         control={control}
@@ -36,7 +41,12 @@ export const FormRegister = () => {
           />
         )}
       />
-      <Button type="submit" bgColor="btn1" title="Cadastrar" />
+      <Button
+        type="submit"
+        disabled={isDisabled}
+        bgColor="btn1"
+        title="Cadastrar"
+      />
     </form>
   );
 };

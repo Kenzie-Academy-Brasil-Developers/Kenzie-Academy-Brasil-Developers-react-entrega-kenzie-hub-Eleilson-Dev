@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import { api } from '../services/api';
 import moduleOptions from '../constants/moduleOptions';
 import { successToast, errorToast } from '../utils/toasts';
@@ -6,13 +6,18 @@ import { successToast, errorToast } from '../utils/toasts';
 export const RegisterContext = createContext();
 
 export const RegisterProvider = ({ children }) => {
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const handleFormChange = () => {
+    setIsDisabled(false);
+  };
+
   const userRegister = async (formRegisterData) => {
     try {
       await api.post('/users', formRegisterData);
-      successToast();
+      successToast('Conta criada com sucesso!');
     } catch (error) {
-      console.error('Registration error:', error.response || error);
-      errorToast();
+      errorToast('Ops! Algo deu errado');
     }
   };
 
@@ -30,14 +35,15 @@ export const RegisterProvider = ({ children }) => {
       };
 
       userRegister(updatedFormData);
-      console.log('cadastro realizado');
     } else {
       console.log('Module not found for:', newUser.course_module);
     }
   };
 
   return (
-    <RegisterContext.Provider value={{ userCreate }}>
+    <RegisterContext.Provider
+      value={{ userCreate, handleFormChange, isDisabled }}
+    >
       {children}
     </RegisterContext.Provider>
   );

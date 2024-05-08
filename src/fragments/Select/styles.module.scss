@@ -5,19 +5,23 @@
   margin-bottom: clamp(0.9rem, 0.863rem + 0.152vw, 1rem);
 
   label {
-    margin-top: 0.3rem;
+    margin-top: 0.8rem;
     margin-bottom: 0.875rem;
     text-transform: capitalize;
     font-size: clamp(0.75rem, 0.526rem + 0.305vw, 0.8rem);
+  }
+
+  .optionsContent {
+    padding: clamp(0.85rem, 0.798rem + 0.213vw, 0.99rem);
   }
 
   div {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: clamp(0.85rem, 0.798rem + 0.213vw, 0.99rem);
     background-color: var(--Grey-2);
     border-radius: 0.25rem;
+    color: var(--Grey-1);
     cursor: pointer;
   }
 }

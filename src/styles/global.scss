@@ -42,3 +42,11 @@ body {
 .btn2 {
   background-color: var(--Grey-1);
 }
+
+.border1 {
+  border: solid 1px transparent;
+}
+
+.border2 {
+  border: solid 1px var(--Color-of-Error);
+}
