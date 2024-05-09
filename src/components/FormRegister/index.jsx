@@ -8,7 +8,7 @@ import { Controller } from 'react-hook-form';
 import { FormInputs } from './FormInputs';
 import { HeaderRegister } from './HeaderRegister';
 import { Button } from '../../fragments/Button';
-import { Select } from '../../fragments/Select';
+import { Select } from '../../fragments/Select/Select';
 import moduleOptions from '../../constants/moduleOptions';
 
 export const FormRegister = () => {

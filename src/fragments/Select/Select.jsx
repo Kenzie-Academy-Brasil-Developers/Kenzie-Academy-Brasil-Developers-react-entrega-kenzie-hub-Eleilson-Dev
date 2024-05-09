@@ -1,8 +1,8 @@
 import { forwardRef, useEffect } from 'react';
 import styles from './styles.module.scss';
-
 import { useSelect } from '../../hooks/useSelect';
 import { AngleDownIcon } from '../AngleDownIcon';
+
 import { DropdownOptions } from './DropdownOptions';
 
 export const Select = forwardRef(
