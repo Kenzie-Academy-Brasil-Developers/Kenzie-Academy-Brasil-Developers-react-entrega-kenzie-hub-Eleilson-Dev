@@ -29,8 +29,10 @@ export const Select = forwardRef(
           onClick={toggleDropdown}
           {...props}
         >
-          <h2>{currentValue}</h2>
-          <AngleDownIcon />
+          <div className={styles.selectDetails}>
+            <h2>{currentValue}</h2>
+            <AngleDownIcon />
+          </div>
           {showDropdown && (
             <DropdownOptions
               options={options}

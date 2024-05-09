@@ -17,11 +17,21 @@
 
   div {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     background-color: var(--Grey-2);
     border-radius: 0.25rem;
     color: var(--Grey-1);
     cursor: pointer;
   }
+
+  .selectDetails {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.icon {
+  border: solid r;
 }

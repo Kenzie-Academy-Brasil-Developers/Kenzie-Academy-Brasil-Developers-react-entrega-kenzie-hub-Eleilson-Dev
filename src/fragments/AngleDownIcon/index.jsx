@@ -1,9 +1,6 @@
-import styles from './styles.module.scss';
-
 export const AngleDownIcon = () => {
   return (
     <svg
-      className={styles.svgIcon}
       width="11"
       height="8"
       viewBox="0 0 11 8"
