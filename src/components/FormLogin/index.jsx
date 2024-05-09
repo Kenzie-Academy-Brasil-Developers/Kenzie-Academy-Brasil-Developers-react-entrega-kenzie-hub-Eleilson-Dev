@@ -1,9 +1,9 @@
 import styles from './styles.module.scss';
 
 import { useLoginContext } from '../../hooks/useLoginContext';
-import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
+import { Link } from 'react-router-dom';
 import { Input } from '../../fragments/Input';
 import { Button } from '../../fragments/Button';
 
@@ -15,12 +15,6 @@ export const FormLogin = () => {
     reset,
     formState: { errors },
   } = useForm();
-
-  const navigate = useNavigate();
-
-  const handleNavTo = () => {
-    navigate('/register');
-  };
 
   const loginSubmit = (formData) => {
     userLogin(formData);
@@ -47,12 +41,7 @@ export const FormLogin = () => {
       />
       <Button type={'submit'} title="Entrar" bgColor="btn1" />
       <p className="HeadlineBold">Ainda não possui uma conta?</p>
-      <Button
-        type={'button'}
-        title="Cadastre-se"
-        bgColor="btn2"
-        navTo={handleNavTo}
-      />
+      <Link to="/register">Cadastre-se</Link>
     </form>
   );
 };
