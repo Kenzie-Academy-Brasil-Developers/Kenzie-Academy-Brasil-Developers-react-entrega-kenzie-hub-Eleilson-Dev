@@ -2,6 +2,7 @@ import styles from './styles.module.scss';
 import { HeaderDashBoard } from './HeaderDashBoard';
 
 import { useLoginContext } from '../../hooks/useLoginContext';
+import { Technologies } from '../../components/Technologies';
 
 export const Dashboard = () => {
   const { user } = useLoginContext();
@@ -17,10 +18,7 @@ export const Dashboard = () => {
           </div>
         </section>
         <section className={`${styles.detailsSection} dashboardConteiner`}>
-          <h1 className="Title1">Que pena! Estamos em desenvolvimento :(</h1>
-          <p className="Paragraph">
-            Nossa aplicação está em desenvolvimento, em breve teremos novidades
-          </p>
+          <Technologies />
         </section>
       </main>
     </div>
