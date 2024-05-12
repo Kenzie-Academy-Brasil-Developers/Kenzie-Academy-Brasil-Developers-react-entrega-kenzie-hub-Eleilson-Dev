@@ -4,7 +4,7 @@ import { useRegisterContext } from '../../hooks/useRegisterContext';
 import { useCustomForm } from '../../hooks/useCustomForm';
 import { useNavigate } from 'react-router-dom';
 
-import { Controller } from 'react-hook-form';
+import { SelectController } from '../SelectController';
 import { FormInputs } from './FormInputs';
 import { HeaderRegister } from './HeaderRegister';
 import { Button } from '../../fragments/Button';
@@ -30,16 +30,13 @@ export const FormRegister = () => {
     >
       <HeaderRegister />
       <FormInputs register={register} errors={formState} />
-      <Controller
+
+      <SelectController
         name="course_module"
         control={control}
-        render={({ field }) => (
-          <Select
-            {...field}
-            options={moduleOptions}
-            defaultValue={moduleOptions[0].course_module}
-          />
-        )}
+        label="Selecionar Módulo"
+        keyValue="course_module"
+        options={moduleOptions}
       />
       <Button
         type="submit"

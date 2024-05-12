@@ -1,17 +1,22 @@
 import styles from './styles.module.scss';
 
-export const DropdownOptions = ({ options, onSelect, toggleDropdown }) => {
+export const DropdownOptions = ({
+  options,
+  onSelect,
+  keyValue,
+  toggleDropdown,
+}) => {
   return (
     <div className={styles.options}>
       {options.map((option, index) => (
         <div
           key={index}
           onClick={() => {
-            onSelect(option.course_module);
+            onSelect(option[keyValue]);
             toggleDropdown();
           }}
         >
-          {option.course_module}
+          {option[keyValue]}
         </div>
       ))}
     </div>

@@ -1,0 +1,62 @@
+.modal {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  top: 0rem;
+
+  .modalContent {
+    display: flex;
+    flex-direction: column;
+    width: 370px;
+    background-color: var(--Grey-3);
+    border-radius: 4px;
+
+    header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding: 0.875rem 1.25rem;
+      background-color: var(--Grey-2);
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+
+      h1 {
+        font-size: 0.875rem;
+        font-weight: 700;
+        height: 100%;
+        color: var(--Grey-0);
+      }
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--Grey-1);
+      cursor: pointer;
+    }
+
+    .btnModal {
+      padding: 1rem;
+      margin: 0.5rem 0rem 1.7619rem 0rem;
+      border-radius: 0.25rem;
+      border: none;
+      outline: none;
+      color: var(--Grey-0);
+      font-weight: 600;
+      font-size: clamp(0.9rem, 0.863rem + 0.152vw, 1rem);
+      cursor: pointer;
+      background-color: var(--Color-primary);
+      width: 100%;
+    }
+  }
+}
+
+.details {
+  padding-inline: 1.25rem;
+}

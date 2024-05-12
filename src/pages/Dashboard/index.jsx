@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 import { HeaderDashBoard } from './HeaderDashBoard';
 
 import { useLoginContext } from '../../hooks/useLoginContext';
-import { Technologies } from '../../components/Technologies';
+import { TechList } from '../../components/TechList';
 
 export const Dashboard = () => {
   const { user } = useLoginContext();
@@ -17,8 +17,8 @@ export const Dashboard = () => {
             <p className="Headline">{user?.course_module}</p>
           </div>
         </section>
-        <section className={`${styles.detailsSection} dashboardConteiner`}>
-          <Technologies />
+        <section className={`dashboardConteiner`}>
+          <TechList />
         </section>
       </main>
     </div>
