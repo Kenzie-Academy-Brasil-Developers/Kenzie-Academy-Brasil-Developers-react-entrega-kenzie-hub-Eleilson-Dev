@@ -70,6 +70,7 @@ export const LoginProvider = ({ children }) => {
     localStorage.removeItem('@TOKEN');
     localStorage.removeItem('@USERID');
     setUser(null);
+    setUserTechs([]);
     navigate('/');
   };
 
