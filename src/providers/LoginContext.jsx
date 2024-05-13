@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, useCallback } from 'react';
 import { api } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import { errorToast, successToast } from '../utils/toasts';
@@ -19,40 +19,39 @@ export const LoginProvider = ({ children }) => {
   const [userTechs, setUserTechs] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const loadUser = async () => {
-      const token = localStorage.getItem('@TOKEN');
-      const userId = localStorage.getItem('@USERID');
-
-      if (token && userId) {
-        try {
-          navigate('/dashboard');
-          const { data } = await api.get(`/users/${userId}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          setUser(data);
-          setUserTechs(data.techs);
-        } catch (error) {
-          console.log(error);
-          localStorage.removeItem('@TOKEN');
-          localStorage.removeItem('@USERID');
-        }
+  const loadUser = useCallback(async () => {
+    const token = localStorage.getItem('@TOKEN');
+    const userId = localStorage.getItem('@USERID');
+    if (token && userId) {
+      try {
+        const { data } = await api.get(`/users/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUser(data);
+        setUserTechs(data.techs);
+        navigate('/dashboard');
+      } catch (error) {
+        console.log(error);
+        localStorage.removeItem('@TOKEN');
+        localStorage.removeItem('@USERID');
+        setUser(null);
+        setUserTechs([]);
       }
-    };
+    }
+  }, [navigate]);
 
+  useEffect(() => {
     loadUser();
-  }, []);
+  }, [loadUser]);
 
   const userLoged = async (formLogin) => {
     try {
       const { data } = await api.post('/sessions', formLogin);
-      console.log(data);
       localStorage.setItem('@TOKEN', data.token);
       localStorage.setItem('@USERID', data.user.id);
-      setUser(data.user);
-      navigate('/dashboard');
+      await loadUser();
     } catch (error) {
       console.log(error);
       errorToast('E-mail ou senha invalidos');
