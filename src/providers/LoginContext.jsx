@@ -1,13 +1,22 @@
 import { createContext, useEffect, useState } from 'react';
 import { api } from '../services/api';
 import { useNavigate } from 'react-router-dom';
-import { errorToast } from '../utils/toasts';
+import { errorToast, successToast } from '../utils/toasts';
 
 export const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
+  const [isModalOpen, setIsModalOpen] = useState({
+    isOpen: false,
+    title: '',
+    btnTitle: '',
+    onConfirm: () => {},
+    required: null,
+  });
+
   const [user, setUser] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [userTechs, setUserTechs] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,6 +33,7 @@ export const LoginProvider = ({ children }) => {
             },
           });
           setUser(data);
+          setUserTechs(data.techs);
         } catch (error) {
           console.log(error);
           localStorage.removeItem('@TOKEN');
@@ -38,12 +48,13 @@ export const LoginProvider = ({ children }) => {
   const userLoged = async (formLogin) => {
     try {
       const { data } = await api.post('/sessions', formLogin);
+      console.log(data);
       localStorage.setItem('@TOKEN', data.token);
       localStorage.setItem('@USERID', data.user.id);
       setUser(data.user);
       navigate('/dashboard');
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       errorToast('E-mail ou senha invalidos');
     }
   };
@@ -62,6 +73,67 @@ export const LoginProvider = ({ children }) => {
     navigate('/');
   };
 
+  const addTechToProfile = async (formTech) => {
+    try {
+      const token = localStorage.getItem('@TOKEN');
+      const { data } = await api.post('/users/techs', formTech, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUserTechs([...userTechs, data]);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deletTech = async (techId) => {
+    try {
+      const token = localStorage.getItem('@TOKEN');
+      await api.delete(`/users/techs/${techId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const newUserTechs = userTechs.filter((tech) => {
+        return tech.id !== techId;
+      });
+      setUserTechs(newUserTechs);
+      successToast('Tecnologia Deletada com sucesso');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateTech = async (techId, formData) => {
+    setIsModalOpen((prevState) => {
+      return { ...prevState, isOpen: false };
+    });
+
+    try {
+      const token = localStorage.getItem('@TOKEN');
+      const { data } = await api.put(`/users/techs/${techId}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const updatedTechs = userTechs.map((tech) => {
+        if (tech.id === techId) {
+          return data;
+        }
+
+        return tech;
+      });
+      successToast('Alterações salvas com sucesso.');
+      setUserTechs(updatedTechs);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <LoginContext.Provider
       value={{
@@ -71,6 +143,12 @@ export const LoginProvider = ({ children }) => {
         userLogin,
         userLogout,
         userIsLoged,
+        isModalOpen,
+        setIsModalOpen,
+        addTechToProfile,
+        userTechs,
+        updateTech,
+        deletTech,
       }}
     >
       {children}

@@ -4,36 +4,48 @@ import { useForm } from 'react-hook-form';
 import { Input } from '../../../fragments/Input';
 import statusOption from '../../../constants/statusOptions';
 import { SelectController } from '../../SelectController';
+import { useLoginContext } from '../../../hooks/useLoginContext';
 
-export const TechModal = ({ setIsModalOpen }) => {
+export const TechModal = () => {
+  const { isModalOpen, setIsModalOpen } = useLoginContext();
   const { control, register, handleSubmit } = useForm({
     defaultValues: {
       status: 'Iniciante',
     },
   });
 
-  const openModal = () => {
-    setIsModalOpen(false);
+  const closeModal = (event) => {
+    event.preventDefault();
+
+    setIsModalOpen((prevState) => {
+      return { ...prevState, isOpen: false };
+    });
   };
 
-  const updateTech = (event) => {
-    console.log(event);
+  const handleEventTech = (formTech) => {
+    isModalOpen.onConfirm(formTech);
   };
 
   return (
     <div className={styles.modal}>
-      <form className={styles.modalContent} onSubmit={handleSubmit(updateTech)}>
+      <form
+        onSubmit={handleSubmit(handleEventTech)}
+        className={styles.modalContent}
+      >
         <header>
-          <h1>Cadastrar Tecnologia</h1>
-          <button onClick={openModal}>X</button>
+          <h1>{isModalOpen.title}</h1>
+          <button onClick={closeModal}>X</button>
         </header>
         <div className={styles.details}>
-          <Input
-            label="nome"
-            placeholder="Digite o nome aqui "
-            type="text"
-            {...register('update')}
-          />
+          {isModalOpen.required && (
+            <Input
+              label="nome"
+              required={true}
+              placeholder="Material UI"
+              type="text"
+              {...register('title')}
+            />
+          )}
           <SelectController
             name="status"
             control={control}
@@ -42,7 +54,7 @@ export const TechModal = ({ setIsModalOpen }) => {
             options={statusOption}
           />
           <button type="submit" className={styles.btnModal}>
-            Cadastrar Tecnologia
+            {isModalOpen.btnTitle}
           </button>
         </div>
       </form>

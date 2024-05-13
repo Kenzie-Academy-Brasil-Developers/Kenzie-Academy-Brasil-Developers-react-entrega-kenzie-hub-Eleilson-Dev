@@ -8,7 +8,6 @@ import { SelectController } from '../SelectController';
 import { FormInputs } from './FormInputs';
 import { HeaderRegister } from './HeaderRegister';
 import { Button } from '../../fragments/Button';
-import { Select } from '../../fragments/Select';
 import moduleOptions from '../../constants/moduleOptions';
 
 export const FormRegister = () => {

@@ -7,4 +7,8 @@
     padding: 1.4375rem;
     border-radius: 4px;
   }
+
+  p {
+    font-size: clamp(0.7rem, 0.614rem + 0.429vw, 1rem);
+  }
 }

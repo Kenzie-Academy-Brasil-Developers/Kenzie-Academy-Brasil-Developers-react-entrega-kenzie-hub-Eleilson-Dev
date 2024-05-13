@@ -9,12 +9,7 @@ import { Button } from '../../fragments/Button';
 
 export const FormLogin = () => {
   const { isVisible, userLogin } = useLoginContext();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const loginSubmit = (formData) => {
     userLogin(formData);
