@@ -2,7 +2,6 @@ import { createContext, useEffect, useState, useCallback } from 'react';
 import { api } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import { errorToast, successToast } from '../utils/toasts';
-import { useQuery } from '@tanstack/react-query';
 
 export const LoginContext = createContext();
 

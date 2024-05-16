@@ -1,7 +1,8 @@
 import { createContext, useState } from 'react';
 import { api } from '../services/api';
-import moduleOptions from '../constants/moduleOptions';
 import { successToast, errorToast } from '../utils/toasts';
+import { useMutation } from '@tanstack/react-query';
+import moduleOptions from '../constants/moduleOptions';
 
 export const RegisterContext = createContext();
 
@@ -12,14 +13,17 @@ export const RegisterProvider = ({ children }) => {
     setIsDisabled(false);
   };
 
-  const userRegister = async (formRegisterData) => {
-    try {
-      await api.post('/users', formRegisterData);
+  const userRegister = useMutation({
+    mutationFn: async (formRegisterData) => {
+      return await api.post('/users', formRegisterData);
+    },
+    onSuccess: () => {
       successToast('Conta criada com sucesso!');
-    } catch (error) {
+    },
+    onError: () => {
       errorToast('Ops! Algo deu errado');
-    }
-  };
+    },
+  });
 
   const userCreate = (newUser) => {
     const data = moduleOptions.find(
@@ -34,7 +38,7 @@ export const RegisterProvider = ({ children }) => {
         course_module: `${course_module} ${description}`,
       };
 
-      userRegister(updatedFormData);
+      userRegister.mutate(updatedFormData);
     } else {
       console.log('Module not found for:', newUser.course_module);
     }
